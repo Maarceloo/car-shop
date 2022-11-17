@@ -29,6 +29,12 @@ class CarService {
     const car = await carODM.findId(id);
     return this.createCar(car as unknown as ICar);
   }
+
+  public async updateCarId(id: string, body: ICar) {
+    const carODM = new CarODM();
+    const car = await carODM.updateCarId(id, body);
+    return this.createCar(car as unknown as ICar);
+  }
 }
 
 export default CarService;

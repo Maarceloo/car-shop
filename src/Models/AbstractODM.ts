@@ -4,6 +4,7 @@ import {
   Schema,
   model,
 } from 'mongoose';
+import ICar from '../Interfaces/ICar';
 
 abstract class AbstractODM<T> {
   protected model: Model<T>;
@@ -26,6 +27,10 @@ abstract class AbstractODM<T> {
 
   public async findById(id: string) {
     return this.model.findById(id);
+  }
+
+  public async findOneAndUpdate(_id: string, body: ICar) {
+    return this.model.findByIdAndUpdate({ _id }, { ...body }, { new: true });
   }
 }
 
