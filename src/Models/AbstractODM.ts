@@ -5,6 +5,7 @@ import {
   model,
 } from 'mongoose';
 import ICar from '../Interfaces/ICar';
+import IMotorcycles from '../Interfaces/IMotorcycle';
 
 abstract class AbstractODM<T> {
   protected model: Model<T>;
@@ -29,7 +30,7 @@ abstract class AbstractODM<T> {
     return this.model.findById(id);
   }
 
-  public async findOneAndUpdate(_id: string, body: ICar) {
+  public async findOneAndUpdate(_id: string, body: ICar | IMotorcycles) {
     return this.model.findByIdAndUpdate({ _id }, { ...body }, { new: true });
   }
 }
