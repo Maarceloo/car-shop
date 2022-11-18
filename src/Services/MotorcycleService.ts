@@ -3,7 +3,7 @@ import IMotorcycle from '../Interfaces/IMotorcycle';
 import MotorcycleODM from '../Models/MotorcycleODM';
 
 class MotorcyclesService {
-  private createMoto(moto: IMotorcycle): Motorcycles | null {
+  private createMoto(moto: IMotorcycle | null): Motorcycles | null {
     if (moto) {
       return new Motorcycles(moto);
     }
