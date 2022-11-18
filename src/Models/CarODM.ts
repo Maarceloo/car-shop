@@ -27,6 +27,10 @@ class CarODM extends AbstractODM<ICar> {
   public async updateCarId(_id: string, body: ICar) {
     return this.model.findByIdAndUpdate({ _id }, { ...body }, { new: true });
   }
+
+  public async deleteCarId(id: string) {
+    return this.model.findByIdAndDelete(id);
+  }
 }
 
 export default CarODM;

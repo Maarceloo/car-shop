@@ -33,6 +33,10 @@ abstract class AbstractODM<T> {
   public async findOneAndUpdate(_id: string, body: ICar | IMotorcycles) {
     return this.model.findByIdAndUpdate({ _id }, { ...body }, { new: true });
   }
+
+  public async findByIdAndDelete(id: string) {
+    return this.model.findByIdAndDelete(id);
+  }
 }
 
 export default AbstractODM;
