@@ -3,7 +3,7 @@ import ICar from '../Interfaces/ICar';
 import CarODM from '../Models/CarODM';
 
 class CarService {
-  private createCar(car: ICar): Car | null {
+  private createCar(car: ICar | null): Car | null {
     if (car) {
       return new Car(car);
     }
