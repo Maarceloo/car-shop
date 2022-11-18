@@ -4,7 +4,7 @@ import Car from '../Domains/Car';
 import ICar from '../Interfaces/ICar';
 import CarService from '../Services/CarService';
 
-const messageInvalidID = { message: 'Invalid mongo id' };
+export const messageInvalidID = { message: 'Invalid mongo id' };
 const messageCarNotFound = { message: 'Car not found' };
 
 class CarController {

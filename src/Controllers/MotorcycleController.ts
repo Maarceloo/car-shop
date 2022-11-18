@@ -3,6 +3,9 @@ import { isValidObjectId } from 'mongoose';
 import Motorcycles from '../Domains/Motorcycle';
 import IMotorcycles from '../Interfaces/IMotorcycle';
 import MotorcyclesService from '../Services/MotorcycleService';
+import { messageInvalidID } from './CarController';
+
+const messageMotocycleNotFound = { message: 'Motorcycle not found' };
 
 class MotorcyclesController {
   private req: Request;
@@ -42,11 +45,11 @@ class MotorcyclesController {
     const { id } = this.req.params;
 
     try {
-      if (!isValidObjectId(id)) return this.res.status(422).json({ message: 'Invalid mongo id' });
+      if (!isValidObjectId(id)) return this.res.status(422).json(messageInvalidID);
 
       const moto = await this.service.findById(id);
 
-      if (!moto) return this.res.status(404).json({ message: 'Motorcycle not found' });
+      if (!moto) return this.res.status(404).json(messageMotocycleNotFound);
 
       return this.res.status(200).json(moto);
     } catch (error) {
@@ -59,13 +62,29 @@ class MotorcyclesController {
     const { body } = this.req;
 
     try {
-      if (!isValidObjectId(id)) return this.res.status(422).json({ message: 'Invalid mongo id' });
+      if (!isValidObjectId(id)) return this.res.status(422).json(messageInvalidID);
 
       const moto = await this.service.updateMotoId(id, body);
       
-      if (!moto) return this.res.status(404).json({ message: 'Motorcycle not found' });
+      if (!moto) return this.res.status(404).json(messageMotocycleNotFound);
 
       return this.res.status(200).json(moto);
+    } catch (error) {
+      this.next(error);
+    }
+  }
+
+  public async deleteMotoId() {
+    const { id } = this.req.params;
+
+    try {
+      if (!isValidObjectId(id)) return this.res.status(422).json(messageInvalidID);
+
+      const moto = await this.service.deleteMotoId(id);
+
+      if (!moto) return this.res.status(404).json(messageMotocycleNotFound);
+
+      return this.res.status(204).json();
     } catch (error) {
       this.next(error);
     }
