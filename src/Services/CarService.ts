@@ -19,26 +19,26 @@ class CarService {
 
   public async findAll() {
     const carODM = new CarODM();
-    const allCars = await carODM.findAll();
+    const allCars = await carODM.find();
     const arrayCar = allCars.map((car: ICar) => this.createCar(car));
     return arrayCar;
   }
 
   public async findById(id: string) {
     const carODM = new CarODM();
-    const car = await carODM.findId(id);
+    const car = await carODM.findById(id);
     return this.createCar(car as unknown as ICar);
   }
 
   public async updateCarId(id: string, body: ICar) {
     const carODM = new CarODM();
-    const car = await carODM.updateCarId(id, body);
+    const car = await carODM.findByIdAndUpdate(id, body);
     return this.createCar(car as unknown as ICar);
   }
 
   public async deleteCarId(id: string) {
     const carODM = new CarODM();
-    const car = await carODM.deleteCarId(id);
+    const car = await carODM.findByIdAndDelete(id);
     return car;
   }
 }

@@ -22,7 +22,7 @@ abstract class AbstractODM<T> {
     return this.model.create({ ...obj });
   }
 
-  public async findAll(): Promise<T[]> {
+  public async find(): Promise<T[]> {
     return this.model.find();
   }
 
@@ -30,7 +30,7 @@ abstract class AbstractODM<T> {
     return this.model.findById(id);
   }
 
-  public async findOneAndUpdate(_id: string, body: ICar | IMotorcycles) {
+  public async findByIdAndUpdate(_id: string, body: ICar | IMotorcycles) {
     return this.model.findByIdAndUpdate({ _id }, { ...body }, { new: true });
   }
 

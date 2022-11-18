@@ -19,26 +19,26 @@ class MotorcyclesService {
 
   public async findAll() {
     const motoODM = new MotorcycleODM();
-    const allMotos = await motoODM.findAll();
+    const allMotos = await motoODM.find();
     const motos = allMotos.map((moto: IMotorcycle) => this.createMoto(moto));
     return motos;
   }
 
   public async findById(id: string) {
     const motoODM = new MotorcycleODM();
-    const moto = await motoODM.findId(id);
+    const moto = await motoODM.findById(id);
     return this.createMoto(moto as unknown as IMotorcycle);
   }
 
   public async updateMotoId(id: string, body: IMotorcycle) {
     const motoODM = new MotorcycleODM();
-    const moto = await motoODM.updateMotoId(id, body);
+    const moto = await motoODM.findByIdAndUpdate(id, body);
     return this.createMoto(moto as unknown as IMotorcycle);
   }
 
   public async deleteMotoId(id: string) {
     const motoODM = new MotorcycleODM();
-    const moto = await motoODM.deleteMotoId(id);
+    const moto = await motoODM.findByIdAndDelete(id);
     return moto;
   }
 }
